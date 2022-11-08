@@ -2,6 +2,7 @@ console.log("Welcome to Tik Tak Toh Game");
 let music = new Audio("music.mp3");
 let audioTune = new Audio("ting.mp3");
 let gameover = new Audio("gameover.mp3");
+const resetbn =  document.querySelector(".reset");
 
 let turn = "X";
 let isgameover = false;
@@ -15,7 +16,7 @@ const checkWin = () => {
   let wins = [
     [0, 1, 2, 5, 5, 0],
     [3, 4, 5, 5, 15, 0],
-    [6, 7, 8,5 , 25, 0],
+    [6, 7, 8, 5 , 25, 0],
     [0, 3, 6, -5, 15, 90],
     [1, 4, 7, 5, 15, 90],
     [2, 5, 8, 15 ,15, 90],
@@ -45,16 +46,19 @@ Array.from(boxes).forEach(element => {
       if (!isgameover) {
         document.getElementsByClassName("info")[0].innerText = "Turn of " + turn;
       }
-
+      else{
+        gameover.play();
+      }
     }
   })
 })
 
-reset.addEventListener('click', () => {
-  let abc = document.querySelectorAll(".boxtext");
-  Array.from(abc).forEach(element => {
+resetbn.addEventListener('click', () => {
+  let boxtexts = document.querySelectorAll('.boxtext');
+  Array.from(boxtexts).forEach(element => {
     element.innerText = "";
   });
+
   turn = "X";
   isgameover = false;
   document.querySelector(".line").style.width = "0vw";
